@@ -1,0 +1,128 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  --deg-now: 0deg;
+  --rotate-haft: 0deg;
+  --rotate-full: 0deg;
+  --delay-animation: 3s;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #111;
+}
+.cube {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  transform-style: preserve-3d;
+  transform: scale(3) rotateX(0deg) rotateY(var(--rotate-full));
+}
+
+.cube div{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+
+}
+.cube div span{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#151515, #00ec00);
+  transform: rotateY(calc(90deg*var(--i))) translateZ(150px);
+}
+.cube-top{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background-color: #222;
+  transform: rotateX(90deg) translateZ(150px);
+}
+.cube-top::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background-color: #00ec00;
+  transform: translateZ(-380px);
+  box-shadow: 0 0  0 10px #00ec0033,
+  0 0 0 100px #00ec0022,
+  0 0 0 200px #00ec0011;
+  filter: blur(50px);
+}
+.slide-frame {
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  color: #00ec00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.display-frame {
+  width: 900px;
+  height: 900px;
+  border: 2px solid #00ec00;
+  margin: 0 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.switch-scale {
+  animation: switch-scale var(--delay-animation) linear forwards;
+}
+@keyframes switch-scale{
+  0%{
+    transform: scale(3) rotateX(0deg) rotateY(var(--deg-now));
+  }
+  50%{
+    transform: scale(1) rotateX(-30deg) rotateY(var(--rotate-half));
+  }
+  100%{
+    transform: scale(3) rotateX(0deg) rotateY(var(--rotate-full));
+  }
+}
+
+ .cube div span:nth-child(1){
+  background-image: url('./imgs/1.jpg');
+}
+.cube div span:nth-child(2){
+  background-image: url('./imgs/2.jpg');
+}
+.cube div span:nth-child(3){
+  background-image: url('./imgs/3.jpg');
+}
+.cube div span:nth-child(4){
+  background-image: url('./imgs/4.jpg');
+}
+.cube-top{
+  background-image: url('./imgs/4.jpg') ;
+}
+.cube div span , .cube-top{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover ;
+}
+#next, #previous{
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 2.5rem;
+
+}
